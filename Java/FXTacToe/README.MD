@@ -5,3 +5,5 @@ https://drive.google.com/file/d/10nf8wluZVus9gGLFGhL5vezf1GImCA8l/view?usp=shari
 To-Do:
   
     -Improve the ui with css
+    -Various Difficulties
+    -Replay button and scores
