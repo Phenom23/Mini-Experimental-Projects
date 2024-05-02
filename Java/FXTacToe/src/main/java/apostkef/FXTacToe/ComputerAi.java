@@ -14,7 +14,8 @@ public class ComputerAi
                 twoPlusOne(true), new int[]{-1, -1}) ){
             return twoPlusOne(true);
         }
-        else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+        else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && buttonMap[0][2] == 0 &&
+                Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
             return new int[]{0,2}; //edgecase
         }
         else if (!Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
