@@ -19,7 +19,7 @@ public class Menu
     Scene scene;
 
     public Menu(Stage stage) {
-        title = new Text("Welcome to FXTacToc!");
+        title = new Text("Welcome to FXTacToe!");
         title.setFont(Font.font("Verdana", 20));
 
         titleHb = new HBox(title);
@@ -35,7 +35,7 @@ public class Menu
         menuHb.setAlignment(Pos.CENTER);
         menuHb.setPadding(new Insets(10));
 
-        stage.setMinWidth(350); stage.setMinHeight(300);
+        stage.setMinWidth(350); stage.setMinHeight(300); stage.setResizable(false); stage.setTitle("FXTacToe - Menu");
 
         bt_PvP.setOnAction(event -> {
             PvpTable tbl = new PvpTable(stage);

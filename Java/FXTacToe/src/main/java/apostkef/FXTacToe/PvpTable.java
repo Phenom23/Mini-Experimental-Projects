@@ -12,6 +12,7 @@ public class PvpTable extends Table
     public PvpTable(Stage stage) {
         super(stage);
         Referee referee = new Referee();
+        stage.setResizable(false); stage.setTitle("FXTacToe - PvP");
 
         //Initializing the map
         for (int i = 0; i < 3; i++) {
@@ -26,27 +27,25 @@ public class PvpTable extends Table
                 int finalI = i; int finalJ = j;
 
                 buttons[i][j].setOnAction(event -> {
-                    if (buttonMap[finalI][finalJ] == 0) {
-                        if (turn == 1 && playerXTries > 0) {
-                            buttonMap[finalI][finalJ] = 1;
-                            playerXTries--;
-                            turn = 2;
-                            buttons[finalI][finalJ].setText("X");
-                            buttons[finalI][finalJ].setDisable(true);
-                        } else if (turn == 2 && playerOTries > 0) {
-                            buttonMap[finalI][finalJ] = 2;
-                            playerOTries--;
-                            turn = 1;
-                            buttons[finalI][finalJ].setText("O");
-                            buttons[finalI][finalJ].setDisable(true);
-                        }
+                    if (turn == 1 && playerXTries > 0) {
+                        buttonMap[finalI][finalJ] = 1;
+                        playerXTries--;
+                        turn = 2;
+                        buttons[finalI][finalJ].setText("X");
+                        buttons[finalI][finalJ].setDisable(true);
+                    } else if (turn == 2 && playerOTries > 0) {
+                        buttonMap[finalI][finalJ] = 2;
+                        playerOTries--;
+                        turn = 1;
+                        buttons[finalI][finalJ].setText("O");
+                        buttons[finalI][finalJ].setDisable(true);
                     }
                     if (referee.topChecker(buttonMap, false) != null) {
                         EndScreen end = new EndScreen(stage, referee.topChecker(buttonMap, false));
-                        stage.setScene(end.getScene());
+                        end.showEndScreen();
                     } else if (playerOTries == 0 && playerXTries == 0 && (referee.topChecker(buttonMap, false) == null)) {
                         EndScreen end = new EndScreen(stage, "No-one won");
-                        stage.setScene(end.getScene());
+                        end.showEndScreen();
                     }
                 });
             }

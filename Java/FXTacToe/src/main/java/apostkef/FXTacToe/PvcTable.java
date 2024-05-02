@@ -11,6 +11,7 @@ public class PvcTable extends Table {
 
     public PvcTable(Stage stage) {
         super(stage);
+        stage.setResizable(false); stage.setTitle("FXTacToe - PvC");
         Referee referee = new Referee();
 
         //Initializing the map
@@ -51,10 +52,10 @@ public class PvcTable extends Table {
                     }
                     if (referee.topChecker(buttonMap, true) != null) {
                         EndScreen end = new EndScreen(stage, referee.topChecker(buttonMap, true));
-                        stage.setScene(end.getScene());
+                        end.showEndScreen();
                     } else if (computerTries == 0 && playerXTries == 0 && (referee.topChecker(buttonMap, true) == null)){
                         EndScreen end = new EndScreen(stage, "No-one won");
-                        stage.setScene(end.getScene());
+                        end.showEndScreen();
                     }
                 });
             }

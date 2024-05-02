@@ -10,11 +10,15 @@ public class ComputerAi
     }
 
     public int[] pick(){
-        if(!Arrays.equals(twoPlusOne(false), new int[]{-1, -1})){
-            return twoPlusOne(false);
-        }
-        else if (!Arrays.equals(twoPlusOne(true), new int[]{-1, -1})){
+        if(!Arrays.equals(
+                twoPlusOne(true), new int[]{-1, -1}) ){
             return twoPlusOne(true);
+        }
+        else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+            return new int[]{0,2}; //edgecase
+        }
+        else if (!Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+            return twoPlusOne(false);
         }
         if (buttonMap[1][1] == 0){ //Preference to start from the middle if possible
             return new int[]{1,1};
