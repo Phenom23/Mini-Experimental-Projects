@@ -4,31 +4,116 @@ import java.util.Arrays;
 public class ComputerAi
 {
     private int[][] buttonMap;
+    double randomness;
 
-    public ComputerAi(int[][] buttonMap){
+    public ComputerAi(int[][] buttonMap, int diff){
         this.buttonMap = buttonMap;
+        if(diff == 3)
+            this.randomness = 0.25;
+        else if (diff == 2)
+            this.randomness = 0.35;
+        else if (diff == 1)
+            this.randomness = 0.45;
     }
 
-    public int[] pick(){
-        if(!Arrays.equals(
-                twoPlusOne(true), new int[]{-1, -1}) ){
-            return twoPlusOne(true);
+    public int[] pick(int diff, int computerTries){
+
+        if(diff == 4){ //extreme difficulty
+            if(!Arrays.equals(
+                    twoPlusOne(true), new int[]{-1, -1}) ){
+                return twoPlusOne(true);
+            }
+            else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && buttonMap[0][2] == 0 &&
+                    Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+                return new int[]{0,2}; //edgecase
+            }
+            else if (!Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+                return twoPlusOne(false);
+            }
+            if (buttonMap[1][1] == 0){ //Preference to start from the middle if possible
+                return new int[]{1,1};
+            }
+            else if (!Arrays.equals(onePlusOne(), new int[]{-1, -1})){
+                return onePlusOne();
+            }
+            else{
+                return RandomMove();
+            }
         }
-        else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && buttonMap[0][2] == 0 &&
-                Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
-            return new int[]{0,2}; //edgecase
+        else if(diff == 3){ //hard difficulty
+            double rdm = Math.random();
+            if(rdm < randomness && computerTries < 4){
+                randomness-=0.15;
+                System.out.println(randomness);
+                return RandomMove();
+            }
+            else if(!Arrays.equals(
+                    twoPlusOne(true), new int[]{-1, -1}) ){
+                return twoPlusOne(true);
+            }
+            else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && buttonMap[0][2] == 0 &&
+                    Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+                return new int[]{0,2}; //edgecase
+            }
+            else if (!Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+                return twoPlusOne(false);
+            }
+            else if (!Arrays.equals(onePlusOne(), new int[]{-1, -1})){
+                return onePlusOne();
+            }
+            else{
+                return RandomMove();
+            }
         }
-        else if (!Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
-            return twoPlusOne(false);
+        else if (diff == 2){ //normal difficulty
+            double rdm = Math.random();
+            if(rdm < randomness && computerTries < 4){
+                randomness-=0.15;
+                System.out.println(randomness);
+                return RandomMove();
+            }
+            else if(!Arrays.equals(
+                    twoPlusOne(false), new int[]{-1, -1}) ){
+                return twoPlusOne(false);
+            }
+            else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && buttonMap[0][2] == 0 &&
+                    Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+                return new int[]{0,2}; //edgecase
+            }
+            else if (!Arrays.equals( twoPlusOne(true), new int[]{-1, -1} ) ){
+                return twoPlusOne(true);
+            }
+            else if (!Arrays.equals(onePlusOne(), new int[]{-1, -1})){
+                return onePlusOne();
+            }
+            else{
+                return RandomMove();
+            }
         }
-        if (buttonMap[1][1] == 0){ //Preference to start from the middle if possible
-            return new int[]{1,1};
-        }
-        else if (!Arrays.equals(onePlusOne(), new int[]{-1, -1})){
-            return onePlusOne();
-        }
-        else{
-            return RandomMove();
+        else{ //easy difficulty
+            double rdm = Math.random();
+            if(rdm < randomness && computerTries < 4){
+                randomness-=0.15;
+                System.out.println(randomness);
+                return RandomMove();
+            }
+            else if(!Arrays.equals(
+                    twoPlusOne(false), new int[]{-1, -1}) ){
+                return twoPlusOne(false);
+            }
+            else if (buttonMap[1][1] == 1 && buttonMap [2][2] == 1 && buttonMap[0][2] == 0 &&
+                    Arrays.equals( twoPlusOne(false), new int[]{-1, -1} ) ){
+                return new int[]{0,2}; //edgecase
+            }
+            else if (!Arrays.equals( twoPlusOne(true), new int[]{-1, -1} ) ){
+                return twoPlusOne(true);
+            }
+            else if (!Arrays.equals(onePlusOne(), new int[]{-1, -1})){
+                return onePlusOne();
+            }
+            else{
+                return RandomMove();
+            }
         }
     }
 
@@ -110,7 +195,7 @@ public class ComputerAi
                 return new int[]{0,col};
             }
             else if ((buttonMap[0][col] == 2 && buttonMap[1][col] == 0  &&  buttonMap[2][col] == 0) ||
-                     (buttonMap[0][col] == 0 && buttonMap[1][col] == 0 && buttonMap[2][col] == 2)){
+                    (buttonMap[0][col] == 0 && buttonMap[1][col] == 0 && buttonMap[2][col] == 2)){
                 return new int[]{1,col};
             }
         }

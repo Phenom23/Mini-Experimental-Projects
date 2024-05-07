@@ -5,11 +5,11 @@ import javafx.stage.Stage;
 public class PvcTable extends Table {
 
     int playerXTries = 5;
-    int computerTries = 4;
+    public int computerTries = 4;
     int turn = 1;  //1 for x, 2 for computer
     int[][] buttonMap = new int[3][3];
 
-    public PvcTable(Stage stage) {
+    public PvcTable(Stage stage, int diff) {
         super(stage);
         stage.setResizable(false); stage.setTitle("FXTacToe - PvC");
         Referee referee = new Referee();
@@ -21,7 +21,7 @@ public class PvcTable extends Table {
             }
         }
 
-        ComputerAi computerAi = new ComputerAi(buttonMap);
+        ComputerAi computerAi = new ComputerAi(buttonMap,diff);
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -39,9 +39,7 @@ public class PvcTable extends Table {
                             buttons[finalI][finalJ].setDisable(true);
                         }
                         if (computerTries > 0) {
-                            int[] computerPick = new int[2];
-                            computerPick[0] = computerAi.pick()[0]; //necessary buffers in order not to recalculate many times,
-                            computerPick[1] = computerAi.pick()[1]; //algorithm ain't work gonna otherwise
+                            int[] computerPick = computerAi.pick(diff,computerTries);
 
                             buttonMap[computerPick[0]][computerPick[1]] = 2;
                             computerTries--;

@@ -24,7 +24,7 @@ public class Menu
 
         titleHb = new HBox(title);
         titleHb.setAlignment(Pos.CENTER);
-        titleHb.setPadding(new Insets(40,20,80,20));
+        titleHb.setPadding(new Insets(80,20,80,20));
 
         bt_PvP = new Button("Player vs Player");
         bt_PvP.setFocusTraversable(false);
@@ -33,7 +33,7 @@ public class Menu
 
         menuHb = new HBox(10, bt_PvP, bt_PvC);
         menuHb.setAlignment(Pos.CENTER);
-        menuHb.setPadding(new Insets(10));
+        menuHb.setPadding(new Insets(10,10,40,10));
 
         stage.setMinWidth(350); stage.setMinHeight(300); stage.setResizable(false); stage.setTitle("FXTacToe - Menu");
 
@@ -43,16 +43,20 @@ public class Menu
             stage.setScene(scene);
         });
         bt_PvC.setOnAction(event -> {
-            PvcTable tbl2 = new PvcTable(stage);
-            scene = tbl2.getScene();
-            stage.setScene(scene);
+            DiffPrompt prompt = new DiffPrompt(stage);
+            prompt.showDiffPrompt();
+            if(prompt.getDiff() != 0){
+                PvcTable tbl2 = new PvcTable(stage, prompt.getDiff());
+                scene = tbl2.getScene();
+                stage.setScene(scene);
+            }
         });
 
         pane = new BorderPane();
         pane.setCenter(menuHb);
         pane.setMinHeight(300); pane.setMinWidth(350); pane.setPadding(new Insets(5));
         pane.setTop(titleHb);
-        pane.setBottom(new Label("By Kefalos Apostolos - 2024"));
+        pane.setBottom(new Label("By Kefalos Apostolos - 2024 - v1.3"));
         scene = new Scene(pane);
         BorderPane.setAlignment(title, Pos.CENTER);
     }
