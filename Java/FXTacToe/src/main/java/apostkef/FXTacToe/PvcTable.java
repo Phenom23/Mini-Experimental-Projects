@@ -22,7 +22,6 @@ public class PvcTable extends Table {
         }
 
         ComputerAi computerAi = new ComputerAi(buttonMap,diff);
-
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int finalI = i; int finalJ = j; //necessary for the lambda expr.
@@ -37,6 +36,8 @@ public class PvcTable extends Table {
                             turn = 2;
                             buttons[finalI][finalJ].setText("X");
                             buttons[finalI][finalJ].setDisable(true);
+                            buttons[finalI][finalJ].setBackground(Stylist.tealBackgroundButton());
+
                         }
                         if (computerTries > 0) {
                             int[] computerPick = computerAi.pick(diff,computerTries);
@@ -46,13 +47,14 @@ public class PvcTable extends Table {
                             turn = 1;
                             buttons[computerPick[0]][computerPick[1]].setText("O");
                             buttons[computerPick[0]][computerPick[1]].setDisable(true);
+                            buttons[computerPick[0]][computerPick[1]].setBackground(Stylist.orangeBackgroundButton());
                         }
                     }
                     if (referee.topChecker(buttonMap, true) != null) {
-                        EndScreen end = new EndScreen(stage, referee.topChecker(buttonMap, true));
+                        EndScreen end = new EndScreen(stage, referee.topChecker(buttonMap, true),2);
                         end.showEndScreen();
                     } else if (computerTries == 0 && playerXTries == 0 && (referee.topChecker(buttonMap, true) == null)){
-                        EndScreen end = new EndScreen(stage, "No-one won");
+                        EndScreen end = new EndScreen(stage, "No-one won",2);
                         end.showEndScreen();
                     }
                 });

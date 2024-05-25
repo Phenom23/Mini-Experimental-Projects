@@ -118,7 +118,6 @@ public class ComputerAi
     }
 
     private int[] twoPlusOne(boolean attack){  //finds the third blank from 2 of the same
-
         int target;
         if(!attack){target = 1;} else{target = 2;}
 

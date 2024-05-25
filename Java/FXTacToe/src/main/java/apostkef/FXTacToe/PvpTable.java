@@ -17,8 +17,7 @@ public class PvpTable extends Table
         //Initializing the map
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                buttonMap[i][j] = 0;
-            }
+                buttonMap[i][j] = 0;}
         }
 
         for (int i = 0; i < 3; i++) {
@@ -33,18 +32,20 @@ public class PvpTable extends Table
                         turn = 2;
                         buttons[finalI][finalJ].setText("X");
                         buttons[finalI][finalJ].setDisable(true);
+                        buttons[finalI][finalJ].setBackground(Stylist.tealBackgroundButton());
                     } else if (turn == 2 && playerOTries > 0) {
                         buttonMap[finalI][finalJ] = 2;
                         playerOTries--;
                         turn = 1;
                         buttons[finalI][finalJ].setText("O");
                         buttons[finalI][finalJ].setDisable(true);
+                        buttons[finalI][finalJ].setBackground(Stylist.orangeBackgroundButton());
                     }
                     if (referee.topChecker(buttonMap, false) != null) {
-                        EndScreen end = new EndScreen(stage, referee.topChecker(buttonMap, false));
+                        EndScreen end = new EndScreen(stage, referee.topChecker(buttonMap, false),1);
                         end.showEndScreen();
                     } else if (playerOTries == 0 && playerXTries == 0 && (referee.topChecker(buttonMap, false) == null)) {
-                        EndScreen end = new EndScreen(stage, "No-one won");
+                        EndScreen end = new EndScreen(stage, "No-one won",1);
                         end.showEndScreen();
                     }
                 });
