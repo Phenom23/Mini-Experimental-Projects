@@ -4,7 +4,7 @@ import BankSource.TypeCheckers.IntegerChecker;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Simulator {
+public class Simulator{
 	
 	private Random r;
 	private Bank bank;
@@ -25,8 +25,11 @@ public class Simulator {
 			int temp = r.nextInt(1, 11);  // Generates a number from 1 to 10 inclusive
 			if(temp <= propCome / 10){
 				System.out.println("Based on probability of " + propCome + "%");
-				System.out.print("\tGive a customer name to be served: ");
-				bank.customerEnters(sc.nextLine()); // Read the customer name
+				Customer customer = new Customer();
+				System.out.print("Give a customer name to be served: ");
+				customer.setName(sc.nextLine());
+				customer.setPriority(sc);
+				bank.customerEnters(customer);
 			} else {
 				System.out.println("Based on probability of " + (100 - propCome) + "%");
 				System.out.print("\t");

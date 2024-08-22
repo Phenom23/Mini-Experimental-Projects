@@ -26,9 +26,11 @@ public class Menu {
 			
 			switch (option){
 				case "1":
+					Customer customer = new Customer();
 					System.out.print("Give a customer name to be served: ");
-					bank.customerEnters(sc.nextLine());
-					System.out.println("The customer has been entered successfully.");
+					customer.setName(sc.nextLine());
+					customer.setPriority(sc);
+					bank.customerEnters(customer);
 					break;
 				case "2":
 					bank.customerServed();

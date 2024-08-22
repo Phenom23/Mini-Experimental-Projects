@@ -1,20 +1,19 @@
 package BankSource;
 import BankSource.TypeCheckers.IntegerChecker;
-
 import java.io.Serializable;
 import java.util.*;
 
 public class Bank implements Serializable {
 	
-	private LinkedList<String>[] cashiers; //for every cashier in the array, there is a linked list with strings (names of customers)
+	private PriorityQueue<Customer>[] cashiers; //for every cashier in the array, there is a linked list with strings (names of customers)
 	private Random r = new Random();
 	private int cashiersBulk; //total amount of cashiers
 	
 	public Bank(Scanner sc){ //initializing stuff
 		setCashiersBulk(sc);
-		this.cashiers = new LinkedList[cashiersBulk];
+		this.cashiers = new PriorityQueue[cashiersBulk];
 		for (int i = 0; i < cashiers.length; i ++){
-			cashiers[i] = new LinkedList<>();
+			cashiers[i] = new PriorityQueue<>();
 		}
 	}
 	
@@ -33,9 +32,9 @@ public class Bank implements Serializable {
 		this.cashiersBulk = Math.abs(Integer.parseInt(cashiersBulk));
 	}
 	
-	public void customerEnters(String fullName){
+	public void customerEnters(Customer customer){
 		
-		ArrayList<Integer> idleCashiersPositions = new ArrayList<>(); //
+		ArrayList<Integer> idleCashiersPositions = new ArrayList<>();
 		for(int i = 0; i < cashiersBulk; i++){ //IF some cashier's queue is empty, put its index in the arraylist of idle cashiers
 			if(cashiers[i].isEmpty()){
 				idleCashiersPositions.add(i);
@@ -43,16 +42,15 @@ public class Bank implements Serializable {
 		}idleCashiersPositions.trimToSize();
 		
 		if(!idleCashiersPositions.isEmpty()){
-			cashiers[idleCashiersPositions.get(r.nextInt(idleCashiersPositions.size()))].add(fullName); //put the new customer to a random idle cashier
+			cashiers[idleCashiersPositions.get(r.nextInt(idleCashiersPositions.size()))].add(customer); //put the new customer to a random idle cashier
 		}
-		
 		else{   //tries to popularize the less full queue
 			LinkedList<Integer> allQ = new LinkedList<>(); // A list that stores the length of each queue
 			for(int i = 0; i <cashiersBulk;i++){
 				allQ.add(cashiers[i].size());
 			}
 			int minQueueIndex = allQ.indexOf(Collections.min(allQ)); //index of the cashier with the least amount of customers
-			cashiers[minQueueIndex].add(fullName); //put there the new customer
+			cashiers[minQueueIndex].add(customer); //put there the new customer
 		}
 		System.out.println("\nThe customer has been entered successfully.");
 		System.out.println("==========================================");
@@ -78,17 +76,20 @@ public class Bank implements Serializable {
 		}
 	}
 	
+	
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append("\n=====Snapshot of all the queues of all cashiers=====\n\n");
 		for(int i = 0; i < cashiersBulk; i++){ //for every queue
+			PriorityQueue<Customer>temp = new PriorityQueue<>(cashiers[i]);
 				str.append("\t-Customers of Cashier's "+(i+1)+" queue: [");
-				if(!cashiers[i].isEmpty()){
-					for(int j = 0; j < cashiers[i].size()-1; j++){
-						str.append(cashiers[i].get(j)+", ");
+				if(!temp.isEmpty()){
+					int tempSize = temp.size();
+					for(int j = 0; j < tempSize-1; j++){
+						str.append(temp.remove()+", ");
 					}
-					str.append(cashiers[i].getLast()+"]\n\n");
+					str.append(temp.remove()+"]\n\n");
 				}
 				else
 					str.append("EMPTY]\n\n");
