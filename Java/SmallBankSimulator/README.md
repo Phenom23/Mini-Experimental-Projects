@@ -1,12 +1,14 @@
 # SmallBankSimulator 
 _Version 1.2_
 
-#
+
+
 Just a program to try and compose all the new knowledge i recently got learning java se. 
-#
+<br><br>
 >I wanted to demonstrate the manipulation of  data in Lists/Queues, file write and read, exception handling and overall oragnisation of my project to packages, classes etc.
 To be honest, besides showcasing my new knowledge and getting trained on applying it, there is not an apparent practial application of this program..but oh well!
 
+<br>
 
 ## Features
 
@@ -18,6 +20,6 @@ To be honest, besides showcasing my new knowledge and getting trained on applyin
 
 - The ability to enter to an atm, by creating an atm account first (OR signing in), and to withdraw/deposit or transfer money to another atm customer.
 -  The ability, by entering a STUFF ONLY option (you have to type a "special code" in order to have access to it) to see all the atm customers, their balance and their passkeys
-#
+  
 #
 _More features to be implemented as time's goes by_
