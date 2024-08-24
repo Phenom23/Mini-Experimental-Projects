@@ -1,5 +1,5 @@
 # SmallBankSimulator 
-_Version 1.2_
+_Version 1.1_
 
 
 
