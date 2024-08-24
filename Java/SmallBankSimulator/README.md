@@ -2,8 +2,8 @@ SmallBankSimulator V1.2 by Kefalos Apostolos
 --------------------------------------------
 
 Just a program to try and compose all the new knowledge i recently got learning java se. 
-  I wanted to demonstrate the manipulation of  data in Lists/Queues, file write and read, exception handling and overall oragnisation of my project to packages, classes etc.
-  To be honest, besides showcasing my new knowledge and getting trained on applying it, there is not an apparent practial application of this program..but oh well!
+	I wanted to demonstrate the manipulation of  data in Lists/Queues, file write and read, exception handling and overall oragnisation of my project to packages, classes etc.
+	To be honest, besides showcasing my new knowledge and getting trained on applying it, there is not an apparent practial application of this program..but oh well!
 
 
 It has:
