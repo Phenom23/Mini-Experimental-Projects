@@ -1,5 +1,4 @@
 # SmallBankSimulator 
-_Version 1.1_
 
 
 
@@ -23,3 +22,6 @@ To be honest, besides showcasing my new knowledge and getting trained on applyin
   
 #
 _More features to be implemented as time's goes by_
+<br><br><br>
+_Version 1.1 Changelog_
+>-Replaced LinkedList with PriorityQueue, in order to implement appointments, VIP or regular priority to each customer.
