@@ -1,13 +1,17 @@
 package FileMethods;
 import BankSource.Bank;
 import java.io.*;
+import java.util.ArrayDeque;
+
 
 public class RestoreInstance {
-	public static Bank RestoreInstance(){
+	public static Bank RestoreInstance(){ //FINAL FORM, STABLE AND CLEAN
 		try{
 			File f = new File("cashiers.bin");
 			try(ObjectInputStream oos = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)))){
-				return (Bank) oos.readObject();
+				Object obj;
+				while ((obj = oos.readObject()) instanceof Bank)
+					return (Bank) obj; //futureproof structure for making multiple instance sessions... to be made
 			}
 		}catch (IOException e){
 			System.err.println("File not found/error");
@@ -16,5 +20,6 @@ public class RestoreInstance {
 		}
 		return null;
 	}
-	
 }
+
+
