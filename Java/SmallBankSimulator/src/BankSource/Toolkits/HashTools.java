@@ -41,15 +41,11 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 		if (crossBase.equalsIgnoreCase("qa")) {
 			found = false;
 			//searches all usernames, to verify UserName uniqueness, in atm memory
-			/*for (AtmCustomer tempAtmCustomer : BankOutputUtilities.getAtmMemory(bank)) {
-				if (tempAtmCustomer.getName().equalsIgnoreCase(name)) {     legacy version  */
 			if (!BankOutputUtilities.getAtmMemory(bank).contains(new AtmCustomer(name))) { //if found
 				found = true; //it exists
 			}
 			if (!found) {
 				// if it is not found in atm memory, it searches in "queues memories"
-			/*for (Customer tempCustomer : BankOutputUtilities.getAllCustomers(bank)) {
-				if (tempCustomer.getName().equalsIgnoreCase(name)) {        legacy  version */
 				if (!BankOutputUtilities.getAllCustomers(bank).contains(new Customer(name))) { //if found
 					found = true;
 				}
@@ -59,11 +55,6 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 	
 		else if(crossBase.equals("a")){
 			// crossBase = 1 | searches all usernames, to verify UserName uniqueness in atm memory only
-			/*for (AtmCustomer tempAtmCustomer : BankOutputUtilities.getAtmMemory(bank)) {
-				if (tempAtmCustomer.getName().equalsIgnoreCase(name)) {
-					return true; //it exists
-				}
-			}*/
 			if (!BankOutputUtilities.getAtmMemory(bank).contains(new AtmCustomer(name))) { //if found
 				return true; //it exists
 			}
@@ -71,11 +62,6 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 		
 		else{
 			// crossBase = q | searches all usernames in queues only, returns true if found
-			/*for (Customer tempCustomer : BankOutputUtilities.getAllCustomers(bank)) {
-				if (tempCustomer.getName().equalsIgnoreCase(name)) {
-					return true; //it exists
-				}
-			}*/
 			if(!BankOutputUtilities.getAllCustomers(bank).contains(new Customer(name))){ //if found
 				return true;
 			}
