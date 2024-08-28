@@ -22,7 +22,7 @@ To be honest, besides showcasing my new knowledge and getting trained on applyin
 _More features to be implemented as time's goes by_
 
 <br><br>
-Download link of .exe: https://drive.google.com/file/d/1lEqElINbCXxFIBbWyzo6Nz6RzUBi5aEL/view?usp=drive_link
+Download link of .exe: [https://drive.google.com/file/d/1lEqElINbCXxFIBbWyzo6Nz6RzUBi5aEL/view?usp=drive_link](https://drive.google.com/file/d/1m5G26AVOC8blqJnAagVrUR0c_5Yd7HR7/view?usp=drive_link)
 <br><br><br>
 _Version 2.1 Changelog_
 >-Refactored and bug fix
