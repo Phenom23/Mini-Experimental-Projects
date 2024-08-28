@@ -17,9 +17,9 @@ To be honest, besides showcasing my new knowledge and getting trained on applyin
 - The ability to enter to an atm, by creating an atm account first (OR signing in), and to withdraw/deposit or transfer money to another atm customer.
 - The ability, by entering a STUFF ONLY option (you have to type a "special code" in order to have access to it) to see all the atm customers, their balance and their passkeys
 
-
+There was a a big focous on  safety, so every step, with every possible user action, will not result to a program malfunction or crash. In addition, even though it's a terminal based program, in almost every step, i provide an exit to the previous state, just like a gui one (it's a terminal program because my focous was purely on functionality and training my java se skills, not the aesthetics on this one).
 #
-_More features to be implemented as time's goes by_
+_More features to be implemented as time's goes by (maybe)_
 
 <br><br>
 Download link of .exe: [https://drive.google.com/file/d/1lEqElINbCXxFIBbWyzo6Nz6RzUBi5aEL/view?usp=drive_link](https://drive.google.com/file/d/1m5G26AVOC8blqJnAagVrUR0c_5Yd7HR7/view?usp=drive_link)
