@@ -24,5 +24,5 @@ _More features to be implemented as time's goes by_
 <br><br>
 Download link of .exe: https://drive.google.com/file/d/1lEqElINbCXxFIBbWyzo6Nz6RzUBi5aEL/view?usp=drive_link
 <br><br><br>
-_Version 2.0 Changelog_
->-Added ATM function, reset function and the code was refactored
+_Version 2.1 Changelog_
+>-Refactored and bug fix
