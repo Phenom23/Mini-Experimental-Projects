@@ -1,7 +1,6 @@
 package FileMethods;
-import BankSource.Bank;
+import BankSource.Bank.Bank;
 import java.io.*;
-import java.util.ArrayDeque;
 
 
 public class RestoreInstance {

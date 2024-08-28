@@ -1,5 +1,5 @@
 package FileMethods;
-import BankSource.Bank;
+import BankSource.Bank.Bank;
 import java.io.*;
 
 public class SaveInstance {

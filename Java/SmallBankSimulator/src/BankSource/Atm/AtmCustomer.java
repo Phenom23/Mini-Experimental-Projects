@@ -15,14 +15,14 @@ public class AtmCustomer implements Serializable { //FINAL FORM, STABLE AND CLEA
 	public String getName() {
 		return name;
 	}
-	String getPasskey() {
+	public String getPasskey() {
 		return passkey;
 	}
-	Double getBalance() { return balance;}
-	void setBalance(Double balance) { this.balance = balance;}
+	public Double getBalance() { return balance;}
+	public void setBalance(Double balance) { this.balance = balance;}
 	
 	@Override
 	public String toString() {
-		return "| Name: "+this.name+" | Passkey: "+this.passkey+" | Balance: "+this.balance+" euros |";
+		return "| Name: " + this.name + " | Passkey: " + this.passkey + " | Balance: " + this.balance + " euros |";
 	}
 }

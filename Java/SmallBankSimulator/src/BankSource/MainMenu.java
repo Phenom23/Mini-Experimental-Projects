@@ -1,5 +1,11 @@
 package BankSource;
-import BankSource.Atm.AtmWelcomeScreen;
+import BankSource.Atm.WelcomeScreen.AtmWelcScrActions;
+import BankSource.Atm.WelcomeScreen.AtmWelcomeScreen;
+import BankSource.Bank.Bank;
+import BankSource.Bank.BankInputUtilities;
+import BankSource.Bank.BankOutputUtilities;
+import BankSource.Bank.Customer;
+import BankSource.Simulator.Simulator;
 import BankSource.Toolkits.HashTools;
 import BankSource.Toolkits.IntegerChecker;
 import FileMethods.RestoreInstance;
@@ -26,18 +32,18 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 			
 			switch (option){
 				case "1":
-					mainAddACustomer(sc); //Wrapper of: bank.customerEnters + atm registerCustomer
+					mainAddACustomer(sc); //Wrapper of: bank.customerEnters + atm registerCustomer (2 in 1)
 					System.out.println("\n"+bank);
 					break;
 					
 				case "2":
-					bank.customerServed();
+					BankOutputUtilities.customerServed(bank);
 					System.out.println("\n"+bank);
 					break;
 					
 				case "3":
 					Simulator sim = new Simulator(sc,bank);
-					this.bank = sim.getBank(); //Doesn't delete ATM Memory, only the queues
+					//this.bank = sim.getBank(); //Doesn't delete ATM Memory, only the queues
 					break;
 					
 				case "4":
@@ -45,7 +51,7 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 					break;
 					
 				case "5":
-					new AtmWelcomeScreen(sc, bank,false); //Launches ATM environment, with 'bank' instance as the "database"
+					new AtmWelcomeScreen(sc, bank); //Launches ATM environment, with 'bank' instance as the "database"
 					break;
 					
 				case "6":
@@ -68,6 +74,7 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 		}
 	}
 	
+	
 	private void MenuDialog(){
 		System.out.println("\nAction Menu:");
 		System.out.println("======================");
@@ -86,6 +93,7 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 		System.out.print("\nGive an option: ");
 	}
 	
+	
 	private void mainAddACustomer(Scanner sc){
 		
 		Customer customer = new Customer(); //creates a regular customer
@@ -99,15 +107,14 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 		if(regOpt.equals("1")){ // 1 - ATM registration + queue entrance
 			
 			//it firsts make a atmAccount
-			AtmWelcomeScreen atmPortal = new AtmWelcomeScreen(sc, bank, true); //we need the atmWelcomeScreen just to have access to atmRegistration, without the fuss of prints, that's why it is headless
-			
 			// if registration of atm account was successful
-			if(atmPortal.registerCustomer(sc, bank, true)){
+			String newCustName;
+			if(!(newCustName = AtmWelcScrActions.registerCustomer(bank, true,true)).equals("fail")){
 				// it also adds the new atm's customer's name as a new regular customer, to a queue
 				// it makes sure the name of the atm account and the name of the customer in the queue are both unique to their "databases", and same
-				customer.setName(atmPortal.getNewCustomerName());
-				customer.setPriority(sc);
-				bank.customerEnters(customer,true);
+				customer.setName(newCustName);
+				customer.setPriority();
+				BankInputUtilities.customerEnters(bank, customer,true);
 			}
 			else{ //it switches mode, if premature exit happens(from atm registration)
 				regOpt = "2";
@@ -118,11 +125,11 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 		if (regOpt.equals("2")){ // 2 - Only Queue Entrance
 			
 			System.out.println("\n=======Queue Check in=======");
-			String customerName = HashTools.nameProvider(sc, bank, bank.getAtmMemory(),true,"q");
+			String customerName = HashTools.nameProvider(sc, bank,true,"q");
 			if(!customerName.equals("fail")){ // "fail" means premature exit
 				customer.setName(customerName);
-				customer.setPriority(sc);
-				bank.customerEnters(customer,true);
+				customer.setPriority();
+				BankInputUtilities.customerEnters(bank, customer,true);
 			}
 			else
 				prematureExit = true;
@@ -135,7 +142,6 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 				System.out.println("Customer has entered a queue and has been register to the ATM");
 			else
 				System.out.println("Customer has entered a queue");
-			
-		} //else {System.out.println("\nExiting");}
+		}
 	}
 }
