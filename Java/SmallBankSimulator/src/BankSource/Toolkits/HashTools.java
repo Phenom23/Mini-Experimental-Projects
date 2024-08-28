@@ -34,47 +34,53 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 		}
 	}
 	
-	public static boolean nameFinder(Bank bank, String name, String crossBase){
+	public static boolean nameFinder(Bank bank, String name, String crossBase) {
 		
 		//crossBase = 2 | It searches the queues and the atm memory, it returns true if name is  found either in atm or in queue, or in both (it is the same name in both scenarios, queues and atm)
-		if(crossBase.equalsIgnoreCase("qa")){
-			boolean found = false;
+		boolean found = false;
+		if (crossBase.equalsIgnoreCase("qa")) {
+			found = false;
 			//searches all usernames, to verify UserName uniqueness, in atm memory
-			for (AtmCustomer tempAtmCustomer : BankOutputUtilities.getAtmMemory(bank)) {
-				if (tempAtmCustomer.getName().equalsIgnoreCase(name)) {
-					found =  true; //it exists
-					break;
-				}
+			/*for (AtmCustomer tempAtmCustomer : BankOutputUtilities.getAtmMemory(bank)) {
+				if (tempAtmCustomer.getName().equalsIgnoreCase(name)) {     legacy version  */
+			if (!BankOutputUtilities.getAtmMemory(bank).contains(new AtmCustomer(name))) { //if found
+				found = true; //it exists
 			}
-			if(!found){
+			if (!found) {
 				// if it is not found in atm memory, it searches in "queues memories"
-				for(Customer tempCustomer : BankOutputUtilities.getAllCustomers(bank)){
-					if(tempCustomer.getName().equalsIgnoreCase(name)){
-						found = true;
-						break;
-					}
+			/*for (Customer tempCustomer : BankOutputUtilities.getAllCustomers(bank)) {
+				if (tempCustomer.getName().equalsIgnoreCase(name)) {        legacy  version */
+				if (!BankOutputUtilities.getAllCustomers(bank).contains(new Customer(name))) { //if found
+					found = true;
 				}
 			}
 			return found;
 		}
-		
+	
 		else if(crossBase.equals("a")){
 			// crossBase = 1 | searches all usernames, to verify UserName uniqueness in atm memory only
-			for (AtmCustomer tempAtmCustomer : BankOutputUtilities.getAtmMemory(bank)) {
+			/*for (AtmCustomer tempAtmCustomer : BankOutputUtilities.getAtmMemory(bank)) {
 				if (tempAtmCustomer.getName().equalsIgnoreCase(name)) {
 					return true; //it exists
 				}
+			}*/
+			if (!BankOutputUtilities.getAtmMemory(bank).contains(new AtmCustomer(name))) { //if found
+				return true; //it exists
 			}
 		}
 		
 		else{
 			// crossBase = q | searches all usernames in queues only, returns true if found
-			for (Customer tempCustomer : BankOutputUtilities.getAllCustomers(bank)) {
+			/*for (Customer tempCustomer : BankOutputUtilities.getAllCustomers(bank)) {
 				if (tempCustomer.getName().equalsIgnoreCase(name)) {
 					return true; //it exists
 				}
+			}*/
+			if(!BankOutputUtilities.getAllCustomers(bank).contains(new Customer(name))){ //if found
+				return true;
 			}
 		}
+		
 		return false; //it does not exist
 	}
 }

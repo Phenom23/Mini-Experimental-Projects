@@ -3,6 +3,7 @@ import BankSource.Toolkits.IntegerChecker;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Customer implements Comparable<Customer>, Serializable { //FINAL FORM, STABLE AND CLEAN
@@ -13,6 +14,9 @@ public class Customer implements Comparable<Customer>, Serializable { //FINAL FO
 	
 	public Customer() {
 		this.checkInTime = Instant.now();
+	}
+	public Customer(String name){
+		this.name = name; //useful for hashset tools, ONLY
 	}
 	
 	@Override
@@ -50,6 +54,19 @@ public class Customer implements Comparable<Customer>, Serializable { //FINAL FO
 			ok = IntegerChecker.checker(priority,1,3);
 		}
 		this.priority = Integer.parseInt(priority);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Customer customer = (Customer) o;
+		return Objects.equals(getName(), customer.getName());
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(getName());
 	}
 	
 	@Override
