@@ -3,6 +3,7 @@ import BankSource.Atm.AtmCustomer;
 import BankSource.Bank.Bank;
 import BankSource.Bank.BankOutputUtilities;
 import BankSource.Bank.Customer;
+
 import java.util.Scanner;
 
 public class HashTools { //FINAL FORM, STABLE AND CLEAN
@@ -10,7 +11,7 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 	//crossBase = true -> It checks both of atm customer memory and bank customer memory (queue)
 	//crossBase = false -> it only checks of the bank customer memory (queue)
 	
-	public static String nameProvider(Scanner sc, Bank bank, boolean unique, String crossBase){
+	public static String nameProvider(Scanner sc, Bank bank, boolean unique, nameFinderOption crossBase){
 		
 		//Responsible for asking for a name, making sure it is not null, and it is unique or not
 		while(true){
@@ -34,11 +35,17 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 		}
 	}
 	
-	public static boolean nameFinder(Bank bank, String name, String crossBase) {
+	public enum nameFinderOption {
+		QUEUEnATM,
+		QUEUE,
+		ATM
+	}
+	
+	public static boolean nameFinder(Bank bank, String name, nameFinderOption crossBase) {
 		
-		//crossBase = 2 | It searches the queues and the atm memory, it returns true if name is  found either in atm or in queue, or in both (it is the same name in both scenarios, queues and atm)
+		//crossBase = QUEUEnATM) | It searches the queues and the atm memory, it returns true if name is  found either in atm or in queue, or in both (it is the same name in both scenarios, queues and atm)
 		boolean found = false;
-		if (crossBase.equalsIgnoreCase("qa")) {
+		if (crossBase.equals(nameFinderOption.QUEUEnATM)) {
 			found = false;
 			//searches all usernames, to verify UserName uniqueness, in atm memory
 			if (!BankOutputUtilities.getAtmMemory(bank).contains(new AtmCustomer(name))) { //if found
@@ -53,15 +60,15 @@ public class HashTools { //FINAL FORM, STABLE AND CLEAN
 			return found;
 		}
 	
-		else if(crossBase.equals("a")){
-			// crossBase = 1 | searches all usernames, to verify UserName uniqueness in atm memory only
+		else if(crossBase.equals(nameFinderOption.ATM)){
+			// crossBase = ATM | searches all usernames, to verify UserName uniqueness in atm memory only
 			if (!BankOutputUtilities.getAtmMemory(bank).contains(new AtmCustomer(name))) { //if found
 				return true; //it exists
 			}
 		}
 		
 		else{
-			// crossBase = q | searches all usernames in queues only, returns true if found
+			// crossBase = QUEUE | searches all usernames in queues only, returns true if found
 			if(!BankOutputUtilities.getAllCustomers(bank).contains(new Customer(name))){ //if found
 				return true;
 			}

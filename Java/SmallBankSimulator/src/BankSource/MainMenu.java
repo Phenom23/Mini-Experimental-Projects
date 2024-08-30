@@ -125,7 +125,7 @@ public class MainMenu { //FINAL FORM, STABLE AND CLEAN
 		if (regOpt.equals("2")){ // 2 - Only Queue Entrance
 			
 			System.out.println("\n=======Queue Check in=======");
-			String customerName = HashTools.nameProvider(sc, bank,true,"q");
+			String customerName = HashTools.nameProvider(sc, bank,true, HashTools.nameFinderOption.QUEUE);
 			if(!customerName.equals("fail")){ // "fail" means premature exit
 				customer.setName(customerName);
 				customer.setPriority();

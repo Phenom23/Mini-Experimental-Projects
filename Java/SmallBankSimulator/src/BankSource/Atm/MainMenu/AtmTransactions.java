@@ -39,7 +39,7 @@ public class AtmTransactions {  //FINAL FORM, STABLE AND CLEAN - Utility Class f
 			boolean exit = false;
 			while (!exit) { //if no premature "exit" happens
 				
-				receiverName = HashTools.nameProvider(sc, bank, false, "a");
+				receiverName = HashTools.nameProvider(sc, bank, false, HashTools.nameFinderOption.ATM);
 				
 				if(receiverName.equals("exit")){ //if premature exit occur
 					System.out.println("\nTransfer failed");

@@ -16,7 +16,7 @@ public class Simulator{ //FINAL FORM, STABLE AND CLEAN - A real Life scenario of
 	public Simulator(Scanner sc, Bank bank){
 		
 		this.iterations = SimulatorUtilities.IterationsGrabber();
-		this.propCome = SimulatorUtilities.PropabilityGrabber();
+		this.propCome = SimulatorUtilities.ProbabilityGrabber();
 		Random r = new Random();
 		
 		for (int i = 0; i < BankOutputUtilities.getCashiers(bank).length; i ++){
@@ -33,7 +33,7 @@ public class Simulator{ //FINAL FORM, STABLE AND CLEAN - A real Life scenario of
 				Customer customer = new Customer();
 				System.out.print("Give a customer name to be served: ");
 				String name;
-				while( HashTools.nameFinder(bank, name = sc.nextLine(),"q")){ // as long as the name provided already exists in the queues
+				while( HashTools.nameFinder(bank, name = sc.nextLine(), HashTools.nameFinderOption.QUEUE)){ // as long as the name provided already exists in the queues
 					System.out.print("\nThis name already exists, provide a unique one: ");
 				}
 				customer.setName(name);

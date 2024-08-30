@@ -19,7 +19,7 @@ public class SimulatorUtilities { //FINAL FORM, STABLE AND CLEAN - Utility class
 		return Integer.parseInt(iter);
 	}
 	
-	protected static int PropabilityGrabber(){
+	protected static int ProbabilityGrabber(){
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Give me the probability a customer will come [0-100%]: ");
 		String propCome = sc.next();

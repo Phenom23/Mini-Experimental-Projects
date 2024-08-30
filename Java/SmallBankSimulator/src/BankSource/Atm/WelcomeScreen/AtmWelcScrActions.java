@@ -25,11 +25,11 @@ public class AtmWelcScrActions { //FINAL FORM, STABLE AND CLEAN - Utility Class 
 			
 			if (!crossBase){
 				//NOT considering the uniqueness of the name, in the queues, only in the atm memory
-				newCustomerName = HashTools.nameProvider(sc,bank,true,"a");
+				newCustomerName = HashTools.nameProvider(sc,bank,true, HashTools.nameFinderOption.ATM);
 			}
 			else{
 				//Considering the uniqueness in the queues as well, useful for outside use
-				newCustomerName = HashTools.nameProvider(sc,bank,true,"qa");
+				newCustomerName = HashTools.nameProvider(sc,bank,true, HashTools.nameFinderOption.QUEUEnATM);
 			}
 			
 			//if the user decides to exit prematurely
@@ -77,7 +77,7 @@ public class AtmWelcScrActions { //FINAL FORM, STABLE AND CLEAN - Utility Class 
 		
 		loader = new NotNullStringLoader(sc,"Give a name");
 		while(!loader.getWannaExit()){ //as long as not premature exiting
-			if(HashTools.nameFinder( bank, loader.getString(),"a")){ //crossBase = a | looks on atm memory
+			if(HashTools.nameFinder( bank, loader.getString(), HashTools.nameFinderOption.ATM)){ //crossBase = a | looks on atm memory
 				matchingName = true;
 				tempName = loader.getString();
 				break;
