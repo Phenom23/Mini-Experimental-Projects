@@ -2,7 +2,13 @@
 
 
 
-Just a program to try and compose all the new knowledge i recently got learning java se. 
+Just a program to try and compose all the new knowledge i recently got learning java se. <br><br>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1a5fd3dd-cd5a-425d-8d42-baf65d603d22" alt="Bank Program Terminal Theme" width="400"/>
+  <br><i>not the actual ui</i>
+</p>
+
+
 <br><br>
 >I wanted to demonstrate the manipulation of  data in Lists/Queues/Sets, file write and read, exception handling, enums and overall oragnisation of my project to packages, classes (i may have failed doing it right, but i tried!) etc.
 To be honest, besides showcasing my new knowledge and getting trained on applying it, there is not an apparent practial application of this program..but oh well!
